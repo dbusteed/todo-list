@@ -1,0 +1,71 @@
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial;
+            margin-top: 5vh;
+        }
+
+        input[type="text"]
+        {
+            font-family: Arial;
+        }   
+
+        .todo-list th {
+            border-bottom: 1px solid black;
+        }
+
+        .todo-list td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        <h1>my todo list</h1>
+        
+        <table class="todo-list">
+            <tr>
+                <th>todo</th>
+                <th>due date</th>
+                <th>status</th>
+            </tr>
+
+            {% for r in rows %}
+                <tr>
+                    <td>{{ r[1] }}</td>
+                    <td>{{ r[2] }}</td>
+                    <td><a href="/delete/{{r[0]}}">mark complete</a></td>
+                </tr>            
+            {% endfor %}
+        </table>
+    
+        <br />
+        <br />
+
+        <form action="/add" method="POST" autocomplete="off">
+            <table>
+                <tr>
+                    <td>TODO:</td>
+                    <td><input type="text" name="todo" /></td>
+                </tr>
+                <tr>
+                    <td>DUE DATE:</td>
+                    <td><input type="text" name="date" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add" /></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</body>
+</html>
